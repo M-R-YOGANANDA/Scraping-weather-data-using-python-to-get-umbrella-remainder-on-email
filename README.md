@@ -102,3 +102,59 @@ This project is licensed under the MIT License – feel free to use and modify.
 Print the current condition
 
 Send an email reminder when it’s rainy/cloudy
+
+
+
+
+
+
+
+
+
+
+issue of docker image is solved by the following 
+Running the Project with Docker
+1️⃣ Build the Docker image
+docker build -t umbrella-reminder .
+
+2️⃣ Run the container
+docker run --env-file .env umbrella-reminder
+
+
+🪄 Tip: The .env file automatically passes your credentials and settings into the container.
+
+3️⃣ Stop the container
+
+To stop it manually:
+
+docker ps          # find the container ID
+docker stop <container_id>
+
+🧠 How It Works
+
+Fetches live weather data for each city listed in CITIES.
+
+Checks if the weather is Rain, Drizzle, Thunderstorm, or Clouds.
+
+Sends an email or desktop notification depending on your ALERT_METHOD.
+
+Uses anti-spam tracking (last_alerts_map) to avoid duplicate alerts.
+
+Runs continuously using the schedule module to check every few seconds/minutes.
+
+🧪 Local Testing (Optional)
+
+You can run it directly without Docker too:
+
+pip install -r requirements.txt
+python umbrella_reminder.py
+
+📋 Requirements
+
+Python 3.10+
+
+OpenWeatherMap API key
+
+Gmail App Password (if using email)
+
+Docker (optional for containerized setup)
